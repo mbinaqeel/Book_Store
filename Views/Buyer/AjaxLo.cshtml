@@ -1,0 +1,40 @@
+﻿@model List<WebApplication2.Models.AjaxCart>
+@{
+    ViewBag.Title = "AjaxLo";
+    Layout = null;
+}
+<ul class="cart_list product_list_widget  ps-container" style="visibility: inherit; opacity: 1;">
+    @foreach(var i in Model)
+    { 
+<li>
+    @{string path = "/Home/BookDetail?id=" + i.id;}
+    <a href="@path" class="product-img">
+        <img width="90" height="90" src="@i.path" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="14BESTCOVERS-slide-OCFB-jumbo-v2" srcset="@i.path 90w, @i.path 150w, @i.path 300w" sizes="(max-width: 90px) 100vw, 90px">
+    </a>
+
+    <div class="product-details">
+        <a href="@path">@i.title</a>
+
+
+        <span class="quantity block">Quantity: @i.qty × <span class="price"><span class="amount">€@i.price</span></span></span>
+        <div class="price-total">
+            <span class="amount">€@i.subtotal</span>
+        </div>
+    </div>
+    </li>
+    }
+    <div class="cart-bottom">
+        <div class="row">
+            <div class="col-sm-6 omega">
+                <a href="/Buyer/Cart" class="button btn btn-default btn-large btn-block wc-forward">View Cart</a>
+            </div>
+            <div class="col-sm-6 alpha">
+                <a href="/Buyer/CheckOut" class="button btn btn-primary btn-large btn-block checkout wc-forward">Checkout</a>
+            </div>
+        </div>
+        <p class="total">
+            <strong>Subtotal: </strong>
+            <span class="amount">4500/-</span>
+        </p>
+    </div>
+

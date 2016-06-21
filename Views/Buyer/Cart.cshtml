@@ -1,0 +1,221 @@
+﻿@model List<WebApplication2.Models.AjaxCart>
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+<div class="woocommerce">
+    <section class="shop">
+        <div class="container">
+
+
+<!--            <div class="woocommerce-info">Shipping costs updated.</div>-->
+
+            <form action="http://themes.laborator.co/aurum/bookshop/cart/" method="post">
+
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <h1>
+                                Cart				<small>You've got @Model.Count item(s) in the cart</small>
+                            </h1>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="coupon-env">
+                                <a class="coupon-enter pull-right-md" href="#">
+                                    Enter Coupon <span>To get discounts</span>
+                                </a>
+
+                                <div class="coupon">
+
+
+                                    <a href="#" class="close-coupon">&times;</a>
+
+                                    <input type="text" name="coupon_code" class="input-text form-control" id="coupon_code" value="" placeholder="Coupon code" />
+                                    <input type="submit" class="button btn btn-primary" name="apply_coupon" value="Apply Coupon" />
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <table class="shop_table cart view-cart" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="product-name">Product</th>
+                            <th></th>
+                            <th class="product-quantity">Quantity</th>
+                            <th class="product-subtotal">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int total = 0;}
+                        @foreach(var cartItem in Model)
+                        { 
+                        <tr class="cart_item">
+
+                            <td class="item-image">
+                                <a href="#" class="remove-item" title="Remove this item" data-value="@cartItem.cartItemID"></a>
+                                @{string hrefpath = "/Home/BookDetail?id=" + cartItem.id;}
+                                <a href="@hrefpath"><img width="70" height="90" src="@cartItem.path" class="attachment-shop-thumb-2 size-shop-thumb-2 wp-post-image" alt="14BESTCOVERS-slide-OCFB-jumbo-v2" srcset="@cartItem.path 70w, @cartItem.path 232w, @cartItem.path 791w, @cartItem.path 290w, @cartItem.path 555w" sizes="(max-width: 70px) 100vw, 70px" /></a>
+                            </td>
+
+                            <td>
+                                <h3>
+                                    <a href="@hrefpath">@cartItem.title</a>
+                                </h3>
+
+                                <span class="price"><span class="amount">&euro;@cartItem.price</span></span>
+                            </td>
+                            
+                            <td class="product-quantity">
+                                <div class="quantity">
+                                    <input type="number" step="1" min="0" max="" name="cart[c16a5320fa475530d9583c34fd356ef5][qty]" value="@cartItem.qty" title="Qty" class="input-text qty text" size="@cartItem.qty" />
+                                </div>
+                            </td>
+
+                            <td class="product-subtotal price">
+                                @{total += Convert.ToInt32(cartItem.subtotal);}
+                                <span class="amount">&euro;@cartItem.subtotal</span>
+                            </td>
+                        </tr>
+                        }
+                        <tr class="hidden">
+                            <td colspan="6" class="actions">
+
+                                
+                                <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="Proceed to Checkout" />
+
+
+                                <a href="http://themes.laborator.co/aurum/bookshop/checkout/" class="checkout-button button alt wc-forward">
+                                    Proceed to Checkout
+                                </a>
+
+                                <input type="hidden" id="_wpnonce" name="_wpnonce" value="d686c4b9f2" /><input type="hidden" name="_wp_http_referer" value="/aurum/bookshop/cart/" />
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </form>
+
+            <div class="row cart-bottom-details">
+
+                <div class="col-md-offset-8 col-md-4">
+
+                    <div class="cart-collaterals">
+
+                        <div class="cart_totals calculated_shipping">
+
+
+                            <h2>Cart Totals</h2>
+
+                            <table cellspacing="0" class="shop_table shop_table_responsive">
+
+                                <tr class="cart-subtotal">
+                                    <th>Subtotal</th>
+                                    <td data-title="Subtotal"><span class="amount">@total</span></td>
+                                </tr>
+
+
+
+
+                                <tr class="shipping">
+                                    <th>Shipping</th>
+                                    <td data-title="Shipping">
+                                        <p>500/-</p>
+
+
+                                    </td>
+                                </tr>
+
+
+
+
+
+
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    @{total += 500;}
+                                    <td data-title="Total"><strong><span class="amount">@total;</span></strong> </td>
+                                </tr>
+
+
+                            </table>
+
+                            <div class="wc-proceed-to-checkout">
+
+                                <a href="http://themes.laborator.co/aurum/bookshop/checkout/" class="checkout-button button alt wc-forward">
+                                    Proceed to Checkout
+                                </a>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row cart-totals">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a class="btn btn-default btn-lg btn-block" href="#update-cart" id="update-cart-btn">Update Cart</a>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a class="btn btn-primary btn-lg btn-block" href="#proceed" id="proceed-to-checkout">Checkout</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#toggle").click(function () {
+                                $(".shipping-calculator-form").slideToggle("slow");
+                            });
+
+                            $(".remove-item").click(function () {
+
+                                if (confirm("you sure wanna remove it?")) {
+                                    var valID = $(this).data("value");
+                                    $.ajax({
+                                        url: "/Buyer/RemoveCartItem",
+                                        data: "id=" + valID,
+                                        method: "POST",
+                                        success: function (data) {
+                                            //alert("item removed");
+                                            if (data == 0)
+                                                window.location = "/Buyer/EmptyCart";
+                                            else
+                                                $("#itemCount").html(data);
+                                        },
+                                        failure: function () {
+                                            alert("dfdfdf");
+                                        }
+                                    });
+                                    $(this).parents(".cart_item").animate({ backgroundColor: "#fbc7c7" }, "slow")
+                .animate({ opacity: "hide" }, "slow");
+                                }
+                                else
+                                    {}
+                            });
+                        });
+                    </script>
+
+                    
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,120 @@
+﻿@model List<WebApplication2.Models.BookPage>
+@{
+    ViewBag.Title = "DelBook";
+    Layout = "~/Views/Layouts/AdminLayout.cshtml";
+}
+<div class="breadcrumbs" id="breadcrumbs">
+<script type="text/javascript">
+    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+</script>
+
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="#">Home</a>
+    </li>
+    <li class="active">Delete Book</li>
+</ul><!-- /.breadcrumb -->
+
+<div class="nav-search" id="nav-search">
+    <form class="form-search">
+        <span class="input-icon">
+            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+            <i class="ace-icon fa fa-search nav-search-icon"></i>
+        </span>
+    </form>
+</div><!-- /.nav-search -->
+                </div>
+<!--            hover effect delete book           -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caption Hover Effects - Demo 4</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Codrops">
+<link rel="shortcut icon" href="http://tympanus.net/Tutorials/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../Caption Hover Effects - Demo 4_files/default.css">
+<link rel="stylesheet" type="text/css" href="../Caption Hover Effects - Demo 4_files/component.css">
+<script type="text/javascript" async="" src="../Caption Hover Effects - Demo 4_files/ga.js"></script>
+<script src="../Caption Hover Effects - Demo 4_files/modernizr.custom.js"></script>
+<script src="/Scripts/jquery-1.12.4.js"></script>
+<script src="/assets/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7243260-2']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    $(document).ready(function () {
+        
+        $(".del").click(function () {
+            var bookid = $(this).attr("id");
+            var path = $(this).data("value");
+            
+            if (confirm("Delete it or not?"))
+            {
+                
+                $.ajax({
+                    url: "/dskfj3k4adsfDF23cnv34fOAdmin2mcbue767bnmn326568/RemoveBook",
+                    data: "id=" + bookid,
+                    method: "POST",
+                    success: function (data) {
+                        if(data == "1")
+                            $("#" + bookid).fadeOut("slow");
+                        else
+                            alert("unhandled error occured :p");
+                        
+                    },
+                    failure: function () {
+                        alert("dfdfdf");
+                    }
+                });
+                
+            }
+            else
+                {}
+            
+
+        })
+    });
+</script>
+<script src="../Caption Hover Effects - Demo 4_files/toucheffects.js"></script>
+<!-- For the demo ad only -->
+<script src="http://tympanus.net/codrops/adpacks/demoad.js"></script>
+
+<style>
+    .lift{
+        float:left
+    }
+</style>
+    <!--images-->
+    <h2>Delete Book</h2>
+
+    <div class="container demo-3">
+        <!-- Top Navigation -->
+
+        <ul class="grid cs-style-4">
+            @foreach(var i in Model)
+            { 
+            <li class="lift" id="@i.ID">
+                <figure>
+                    <div><img src="@i.path" alt="@i.title" width="250px" height="350px"></div>
+                    <figcaption>
+                        <h3>@i.title</h3>
+                        <span>@i.author</span>
+                        
+                        <a href="#" class="del" id="@i.ID" data-value="@i.path">Delete Book</a>
+                    </figcaption>
+                </figure>
+            </li>
+            }
+            
+            
+        </ul>
+    </div>
+

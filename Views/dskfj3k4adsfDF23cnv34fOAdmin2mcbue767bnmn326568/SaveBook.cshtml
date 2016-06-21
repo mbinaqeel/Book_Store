@@ -1,0 +1,78 @@
+﻿@model WebApplication2.Models.bookdata
+@{
+    ViewBag.Title = "SaveBook";
+    Layout = "~/Views/Layouts/AdminLayout.cshtml";
+//    Layout = null;
+}
+
+<div style="padding-left:10%">
+    <h2>SaveBook</h2>
+    @using (Html.BeginForm("ImageUpload", "dskfj3k4adsfDF23cnv34fOAdmin2mcbue767bnmn326568", FormMethod.Post, new {  enctype = "multipart/form-data"}))
+{
+    
+            <input type="file" name="file" />
+        <br />
+    <div class="col-sm-8 col-md-7">
+        
+        
+        @Html.TextBoxFor(m => m.title, new { @class = "form-control ui-autocomplete-input", @placeholder= Html.DisplayNameFor(n => n.title) })
+        @Html.ValidationMessageFor(m => m.title)
+
+        <br />
+        
+        @Html.TextBoxFor(m => m.author, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.author) })
+        @Html.ValidationMessageFor(m => m.author, "", new { @class = "field-validation-error" })
+        <br />
+        <style>
+            .field-validation-error {
+                color: white;
+                font-weight: bold;
+                background-color:red;
+                
+            }
+        </style>
+        
+        @Html.TextBoxFor(m => m.pages, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.pages) })
+        @Html.ValidationMessageFor(m => m.pages)
+        <br />
+
+
+        
+        @Html.TextBoxFor(m => m.pirce, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.pirce) })
+        @Html.ValidationMessageFor(m => m.pirce)
+        <br />
+
+        
+        @Html.TextBoxFor(m => m.language, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.language) })
+        @Html.ValidationMessageFor(m => m.language)
+        <br />
+
+        
+        @Html.TextBoxFor(m => m.tags, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.tags) })
+        @Html.ValidationMessageFor(m => m.tags)
+        <br />
+
+        
+        @Html.TextBoxFor(m => m.publisher, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.publisher) })
+        @Html.ValidationMessageFor(m => m.publisher)
+        <br />
+
+
+        
+        @Html.TextAreaFor(m => m.description, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.description) })
+        @Html.ValidationMessageFor(m => m.description)
+        <br />
+
+
+        
+        @Html.TextBoxFor(m => m.yearpublished, new { @class = "form-control ui-autocomplete-input", @placeholder = Html.DisplayNameFor(n => n.yearpublished) })
+        @Html.ValidationMessageFor(m => m.yearpublished)
+        <br />
+
+
+        
+
+        <input type="submit" value="OK" class="btn btn-danger btn-block" />
+    </div>
+}
+</div>

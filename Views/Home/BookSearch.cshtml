@@ -1,0 +1,52 @@
+﻿@model List<WebApplication2.Models.BookPage>
+@{
+    ViewBag.Title = "BookSearch";
+}
+<div style="height:100%; width:90%; margin-left:5%; ">
+<section class="search-header" style="background-color: #F4EEC2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>
+                    @Model.Count result found for <strong>&quot;@ViewBag.Key&quot;</strong>
+                </h2>
+                <a href="#" class="go-back">&laquo; Go back</a>
+
+              
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="search-results-list" style="background-color: #EAEAE6">
+    <div class="container">
+        <div class="col-sm-12">
+
+            <table>
+                @foreach (var item in Model) { 
+                <tr>
+                    <td>
+                        @{string detailpath = "/Home/BookDetail?id=" + item.ID;}
+                        <div class="post-thumbnail"><a href="@detailpath"><img width="60" height="60" src="@item.path" class="attachment-thumbnail size-thumbnail wp-post-image" alt="eco_bookshop1" srcset="@item.path 50w, @item.path 50w, @item.path 100w" sizes="(max-width: 90px) 60vw, 60px"></a></div>
+                    </td>
+                    <td style="padding-left:25px; padding-bottom:15px">
+                    
+                            <h3>
+                                <a href="@detailpath">@item.title</a>
+                            </h3>
+
+                            <div class="meta">
+                                February 2, 2015
+                            </div>
+                    
+                    </td>
+                </tr>
+                }
+                
+            </table>
+
+        </div>
+    </div>
+</section>
+</div>

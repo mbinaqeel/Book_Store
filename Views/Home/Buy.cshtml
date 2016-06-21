@@ -1,0 +1,51 @@
+﻿@using WebApplication2.Models;
+@{
+    
+    ViewBag.Title = "Buy";
+    Layout = null;
+}
+<body onload="init()">
+    <script>
+        var init = function () {
+            /*var table = document.getElementById("form");
+            var put = document.createElement("a");
+            alert(put);
+            var id = document.createAttribute("id");
+            id.value = "mba";
+            put.setAttributeNode(id);
+            put.setAttribute("href", "#");
+            put.appendChild(document.createTextNode("MyData"));
+            table.appendChild(put);
+            alert("DSFsdf");
+            */
+            var d1 = document.getElementById("d1");
+            var d2 = document.getElementById("d2");
+            var btn = document.getElementById("btn");
+
+            d1.addEventListener("click", function () { alert("Hello World!"); }, false);
+            d2.addEventListener("click", function () { alert("d2"); }, true);
+            btn.addEventListener("click", function () { alert("btn"); }, false);
+            
+
+        }
+       /* function fun(e) {
+            alert("d1");
+
+        }
+        function f(e) {
+            alert("d2");
+
+        }
+        function b(e) {
+            alert("button");
+
+        }*/
+    </script>
+    <div id="d1" style="background-color:green; width:100px; height:100px">
+        <div id="d2" style="background-color:red; width:70px; height:80px">
+            <input type="button" id="btn" />
+        </div>
+
+
+    </div>
+</body>
